@@ -1,6 +1,5 @@
 const config = {
-	MONGO_URI: process.env.MONGO_URI,
-	PORT: 4000
+	MONGO_URI: process.env.MONGO_URI
 }
 
 export default config

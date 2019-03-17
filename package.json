@@ -6,9 +6,9 @@
 	"scripts": {
 		"format": "prettier --write \"**/*.+(js|md|json)\"",
 		"lint": "eslint \"**/*.js\"",
-		"dev": "nodemon --exec babel-node index.js",
+		"dev": "nodemon --exec babel-node -r ./node_modules/dotenv/config index.js",
 		"start": "node build",
-		"prebuild": "rimraf build",
+		"prebuild": "npm run format && npm run lint && rimraf build",
 		"build": "rollup -c",
 		"setup": "npm install && npm run build",
 		"commit": "git-cz"
