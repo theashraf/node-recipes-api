@@ -1,5 +1,16 @@
+import DefaultAdapter from "../src/services/mail/DefaultAdapter"
+
 const config = {
-	PORT: 3000
+	appName: "Recipe",
+	PORT: 3000,
+	mail: {
+		options: {
+			host: "localhost",
+			port: 1025,
+			from: "app@gmail.com"
+		},
+		adapter: DefaultAdapter
+	}
 }
 
 export default config

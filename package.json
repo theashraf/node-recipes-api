@@ -28,6 +28,7 @@
 		"@babel/cli": "^7.2.3",
 		"@babel/core": "^7.3.4",
 		"@babel/node": "^7.2.2",
+		"@babel/plugin-proposal-class-properties": "^7.3.4",
 		"@babel/plugin-transform-spread": "^7.2.2",
 		"@babel/preset-env": "^7.3.4",
 		"@commitlint/cli": "^7.5.2",
@@ -56,12 +57,14 @@
 	"dependencies": {
 		"body-parser": "^1.18.3",
 		"cors": "^2.8.5",
+		"ejs": "^2.6.1",
 		"express": "^4.16.4",
 		"helmet": "^3.16.0",
 		"joi": "^14.3.1",
 		"lodash": "^4.17.11",
 		"mongoose": "^5.4.19",
-		"morgan": "^1.9.1"
+		"morgan": "^1.9.1",
+		"nodemailer": "^5.1.1"
 	},
 	"config": {
 		"commitizen": {
