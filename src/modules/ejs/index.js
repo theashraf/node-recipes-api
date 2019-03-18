@@ -1,6 +1,6 @@
 import ejs from "ejs"
 
-exports.renderFile = (...args) =>
+const renderFile = (...args) =>
 	new Promise((resolve, reject) => {
 		ejs.renderFile(...args, (err, str) => {
 			if (err) {
@@ -10,3 +10,5 @@ exports.renderFile = (...args) =>
 			}
 		})
 	})
+
+export default { renderFile }
