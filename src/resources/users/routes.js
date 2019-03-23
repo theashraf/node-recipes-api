@@ -1,15 +1,23 @@
-import { Router } from "express"
+import Router from "express-promise-router"
+import {
+	createUser,
+	readUser,
+	readUsers,
+	updateUser,
+	deleteUser
+} from "./controllers"
 
 const router = Router()
 
-/**
- * @swagger
- * /api/users:
- *    get:
- *      description: This should return all users
- */
-router.route("/").get((req, res, next) => {
-	res.json({ data: [] })
-})
+router
+	.route("/")
+	.post(createUser)
+	.get(readUsers)
+
+router
+	.route("/:id")
+	.get(readUser)
+	.post(updateUser)
+	.delete(deleteUser)
 
 export default router

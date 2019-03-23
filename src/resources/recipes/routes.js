@@ -1,15 +1,23 @@
-import { Router } from "express"
+import Router from "express-promise-router"
+import {
+	createRecipe,
+	readRecipe,
+	readRecipes,
+	updateRecipe,
+	deleteRecipe
+} from "./controllers"
 
 const router = Router()
 
-/**
- * @swagger
- * /api/recipes:
- *    get:
- *      description: This should return all recipes
- */
-router.route("/").get((req, res, next) => {
-	res.json({ data: [] })
-})
+router
+	.route("/")
+	.post(createRecipe)
+	.get(readRecipes)
+
+router
+	.route("/:id")
+	.get(readRecipe)
+	.post(updateRecipe)
+	.delete(deleteRecipe)
 
 export default router
