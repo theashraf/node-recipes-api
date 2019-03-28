@@ -4,6 +4,7 @@ import replace from "rollup-plugin-replace"
 import resolve from "rollup-plugin-node-resolve"
 import commonjs from "rollup-plugin-commonjs"
 import minify from "rollup-plugin-babel-minify"
+import obfuscator from "rollup-plugin-javascript-obfuscator"
 import path from "path"
 
 const pkg = require("./package.json")
@@ -23,6 +24,9 @@ export default {
 		replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
 		minify({
 			comments: false
+		}),
+		obfuscator({
+			compact: true
 		})
 	],
 	external,
