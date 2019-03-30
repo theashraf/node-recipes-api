@@ -1,9 +1,27 @@
+import bcrypt from "bcrypt"
+import JWT from "jsonwebtoken"
 import User from "./User"
 
 export const createUser = async (req, res) => {
 	const { body: userData } = req
-	const createdUser = await User.create(userData)
-	res.status(201).json(createdUser)
+
+	const { email, password } = userData
+
+	const foundUser = await User.findOne({ email }).exec()
+	if (foundUser) {
+		throw new Error("email already used")
+	}
+
+	const hashedPassword = await bcrypt.hash(password, 12)
+
+	const createdUser = await User.create({
+		...userData,
+		password: hashedPassword
+	})
+
+	const token = await JWT.sign({ id: createdUser.id }, "secret")
+
+	res.status(201).json({ ...createdUser.toJSON(), password: null, token })
 }
 
 export const readUser = async (req, res) => {
