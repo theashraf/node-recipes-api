@@ -4,7 +4,8 @@ import {
 	readUser,
 	readUsers,
 	updateUser,
-	deleteUser
+	deleteUser,
+	loginUser
 } from "./controllers"
 
 const router = Router()
@@ -13,6 +14,8 @@ router
 	.route("/")
 	.post(createUser)
 	.get(readUsers)
+
+router.post("/login", loginUser)
 
 router
 	.route("/:id")

@@ -54,3 +54,24 @@ export const deleteUser = async (req, res) => {
 	const deletedUser = await User.findByIdAndRemove(userId).exec()
 	res.status(200).json(deletedUser)
 }
+
+export const loginUser = async (req, res) => {
+	const { email, password } = req.body
+
+	const user = await User.findOne({ email })
+		.lean()
+		.exec()
+
+	if (!user) {
+		throw new Error("Wrong email or password!")
+	}
+
+	const passwordMatched = await bcrypt.compare(password, user.password)
+	if (!passwordMatched) {
+		throw new Error("Wrong email or password!")
+	}
+
+	const token = await JWT.sign({ id: user.id }, "secret")
+
+	res.status(200).json({ ...user, password: null, token })
+}
