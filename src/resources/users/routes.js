@@ -1,5 +1,9 @@
 import Router from "express-promise-router"
 import {
+	createUser as createUserValidation,
+	loginUser as loginUserValidation
+} from "./validations"
+import {
 	createUser,
 	readUser,
 	readUsers,
@@ -12,10 +16,10 @@ const router = Router()
 
 router
 	.route("/")
-	.post(createUser)
+	.post(createUserValidation, createUser)
 	.get(readUsers)
 
-router.post("/login", loginUser)
+router.post("/login", loginUserValidation, loginUser)
 
 router
 	.route("/:id")

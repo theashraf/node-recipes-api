@@ -1,6 +1,6 @@
 import Joi from "joi"
 
-exports.validateBody = validationSchema => {
+export const validateBody = validationSchema => {
 	return (req, res, next) => {
 		const { error, value } = Joi.validate(req.body, validationSchema)
 		if (error) {
@@ -11,3 +11,5 @@ exports.validateBody = validationSchema => {
 		next()
 	}
 }
+
+export const validateParam = () => {}

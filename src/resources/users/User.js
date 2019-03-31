@@ -1,12 +1,23 @@
 import { Schema, model } from "mongoose"
+import appConfig from "../../../config"
 
 const userSchema = new Schema(
 	{
 		firstName: {
-			type: String
+			type: String,
+			min: 2,
+			max: 255,
+			default: ""
 		},
 		lastName: {
-			type: String
+			type: String,
+			min: 2,
+			max: 255,
+			default: ""
+		},
+		emailVerified: {
+			type: Boolean,
+			default: false
 		},
 		profilePicture: {
 			type: String
@@ -35,6 +46,12 @@ const userSchema = new Schema(
 	},
 	{ timestamps: true }
 )
+
+userSchema.post("save", function(doc) {
+	if (this.wasNew && appConfig.verifyEmail) {
+		console.log("send verification email...")
+	}
+})
 
 const User = model("user", userSchema)
 

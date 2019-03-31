@@ -10,7 +10,9 @@ const config = {
 			from: "app@gmail.com"
 		},
 		adapter: DefaultAdapter
-	}
+	},
+	passwordPolicy: /(?=.{8,})/, // at least 8 characters
+	verifyEmail: true
 }
 
 export default config
