@@ -13,3 +13,15 @@ mongoose
 		)
 	})
 	.catch(e => console.error(e))
+
+process.on("SIGTERM", () => {
+	server.close(() => {
+		mongoose.connection.close(false, err => {
+			if (err) {
+				// TODO: use logger instead if console.error
+				console.error("error while closing db connection")
+			}
+			process.exit(0)
+		})
+	})
+})

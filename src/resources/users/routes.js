@@ -1,4 +1,5 @@
 import Router from "express-promise-router"
+import { validateBody } from "../../middlewares/validation"
 import {
 	createUser as createUserValidation,
 	loginUser as loginUserValidation
@@ -16,10 +17,10 @@ const router = Router()
 
 router
 	.route("/")
-	.post(createUserValidation, createUser)
+	.post(validateBody(createUserValidation), createUser)
 	.get(readUsers)
 
-router.post("/login", loginUserValidation, loginUser)
+router.post("/login", validateBody(loginUserValidation), loginUser)
 
 router
 	.route("/:id")
