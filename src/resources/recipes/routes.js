@@ -1,4 +1,6 @@
 import Router from "express-promise-router"
+import { validateBody } from "../../middlewares/validation"
+import { createRecipe as createRecipeValidation } from "./validations"
 import {
 	createRecipe,
 	readRecipe,
@@ -11,7 +13,7 @@ const router = Router()
 
 router
 	.route("/")
-	.post(createRecipe)
+	.post(validateBody(createRecipeValidation), createRecipe)
 	.get(readRecipes)
 
 router

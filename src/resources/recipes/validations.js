@@ -1,3 +1,12 @@
 import Joi from "joi"
 
-exports.createRecipes = Joi.object().keys({})
+export const createRecipe = Joi.object().keys({
+	name: Joi.string()
+		.alphanum()
+		.trim()
+		.min(2)
+		.max(255)
+		.required()
+})
+
+export const updateRecipe = Joi.object().keys({})
